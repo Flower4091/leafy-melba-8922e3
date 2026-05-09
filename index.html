@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Fitness 💪 — Transforma tu cuerpo en 30 días</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #080808;
+    --rojo: #ff2020;
+    --naranja: #ff6b1a;
+    --dorado: #f5c842;
+    --verde: #22c55e;
+    --blanco: #f5f5f0;
+    --gris: #141414;
+    --gris2: #1e1e1e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background:var(--negro); color:var(--blanco); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+
+  /* BARRA URGENCIA */
+  .urgencia-bar {
+    background: linear-gradient(135deg, var(--rojo), var(--naranja));
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    animation: pulse-bar 2s infinite;
+  }
+  @keyframes pulse-bar { 0%,100%{opacity:1} 50%{opacity:0.85} }
+
+  /* NAV */
+  nav {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.2rem 2rem;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    position:sticky; top:0;
+    background:rgba(8,8,8,0.97);
+    backdrop-filter:blur(12px);
+    z-index:100;
+  }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; }
+  .logo span { background:linear-gradient(135deg,var(--rojo),var(--naranja)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .nav-cta { background:linear-gradient(135deg,var(--rojo),var(--naranja)); color:white; padding:0.6rem 1.5rem; border-radius:100px; text-decoration:none; font-weight:700; font-size:0.85rem; transition:transform 0.2s,box-shadow 0.2s; }
+  .nav-cta:hover { transform:translateY(-2px); box-shadow:0 4px 20px rgba(255,32,32,0.5); }
+
+  /* HERO */
+  .hero {
+    min-height:95vh; display:flex; flex-direction:column;
+    justify-content:center; align-items:center;
+    text-align:center; padding:4rem 1.5rem;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse at 50% 65%, rgba(255,32,32,0.14) 0%, transparent 65%);
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:rgba(255,32,32,0.12); border:1px solid rgba(255,32,32,0.25);
+    padding:0.4rem 1rem; border-radius:100px;
+    font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:2rem; animation:fadeDown 0.8s ease both;
+  }
+  .dot { width:6px; height:6px; background:var(--rojo); border-radius:50%; animation:blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.6)} }
+
+  .hero h1 {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3.5rem,13vw,9rem);
+    line-height:0.88; letter-spacing:0.02em;
+    animation:fadeUp 0.8s ease 0.2s both;
+  }
+  .grad { background:linear-gradient(135deg,var(--rojo),var(--naranja)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .hero-pain {
+    font-size:clamp(1rem,2.5vw,1.2rem);
+    color:rgba(245,245,240,0.65);
+    max-width:580px; margin:1.5rem auto;
+    line-height:1.7; animation:fadeUp 0.8s ease 0.4s both;
+  }
+  .hero-pain strong { color:var(--blanco); }
+
+  .hero-social-proof {
+    display:flex; align-items:center; gap:1rem; justify-content:center;
+    margin-bottom:2.5rem; animation:fadeUp 0.8s ease 0.5s both;
+    flex-wrap:wrap;
+  }
+  .avatares { display:flex; }
+  .avatares div {
+    width:36px; height:36px; border-radius:50%;
+    border:2px solid var(--negro);
+    background:linear-gradient(135deg,var(--rojo),var(--naranja));
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.7rem; font-weight:700; margin-left:-10px;
+  }
+  .avatares div:first-child { margin-left:0; }
+  .social-text { font-size:0.85rem; color:rgba(245,245,240,0.6); }
+  .social-text strong { color:var(--blanco); }
+  .estrellas-hero { color:var(--dorado); font-size:0.9rem; }
+
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; animation:fadeUp 0.8s ease 0.6s both; }
+
+  .btn-primary {
+    background:linear-gradient(135deg,var(--rojo),var(--naranja));
+    color:white; padding:1.1rem 2.8rem; border-radius:100px;
+    text-decoration:none; font-weight:700; font-size:1rem;
+    box-shadow:0 4px 30px rgba(255,32,32,0.35);
+    transition:transform 0.2s,box-shadow 0.2s; display:inline-block;
+  }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 8px 40px rgba(255,32,32,0.55); }
+  .btn-secondary {
+    background:transparent; color:var(--blanco); padding:1.1rem 2.8rem; border-radius:100px;
+    text-decoration:none; font-weight:500; font-size:1rem;
+    border:1px solid rgba(245,245,240,0.18); transition:all 0.2s; display:inline-block;
+  }
+  .btn-secondary:hover { border-color:rgba(245,245,240,0.4); background:rgba(245,245,240,0.05); }
+
+  /* DOLOR */
+  .dolor {
+    background:var(--gris); padding:4rem 2rem;
+    border-top:1px solid rgba(255,32,32,0.15);
+    border-bottom:1px solid rgba(255,32,32,0.15);
+  }
+  .dolor-inner { max-width:900px; margin:0 auto; text-align:center; }
+  .dolor h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,6vw,4rem); margin-bottom:2.5rem; }
+  .dolor-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; text-align:left; }
+  .dolor-item {
+    background:var(--negro); border-radius:16px; padding:1.5rem;
+    border:1px solid rgba(255,32,32,0.12);
+  }
+  .dolor-item .x { font-size:1.5rem; margin-bottom:0.75rem; }
+  .dolor-item h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; color:rgba(245,245,240,0.9); }
+  .dolor-item p { font-size:0.85rem; color:rgba(245,245,240,0.45); line-height:1.6; }
+
+  /* TICKER */
+  .ticker { background:linear-gradient(135deg,var(--rojo),var(--naranja)); padding:0.65rem 0; overflow:hidden; white-space:nowrap; }
+  .ticker-inner { display:inline-flex; animation:ticker 22s linear infinite; gap:3rem; }
+  .ticker span { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.08em; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* SOBRE */
+  .sobre { padding:5rem 2rem; max-width:950px; margin:0 auto; display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:center; }
+  @media(max-width:700px){.sobre{grid-template-columns:1fr;gap:2rem}}
+  .sobre-avatar {
+    width:100%; aspect-ratio:1; max-width:280px; margin:0 auto;
+    border-radius:30px; background:var(--gris2);
+    border:2px solid rgba(255,32,32,0.2);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-size:4.5rem; position:relative; overflow:hidden;
+  }
+  .sobre-avatar::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 30%,rgba(255,32,32,0.12),transparent 70%); }
+  .sobre-avatar-name { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.1em; color:rgba(245,245,240,0.6); margin-top:0.5rem; position:relative; }
+  .tag { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--rojo); font-weight:700; margin-bottom:0.75rem; }
+  .sobre h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3.5rem); line-height:1; margin-bottom:1.25rem; }
+  .sobre p { color:rgba(245,245,240,0.58); line-height:1.8; margin-bottom:0.9rem; font-size:0.92rem; }
+  .chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.25rem; }
+  .chip { background:rgba(255,32,32,0.1); border:1px solid rgba(255,32,32,0.2); padding:0.3rem 0.8rem; border-radius:100px; font-size:0.78rem; color:rgba(245,245,240,0.8); }
+
+  /* GARANTIA */
+  .garantia-bar {
+    background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2);
+    border-radius:16px; padding:1.5rem 2rem;
+    display:flex; align-items:center; gap:1.5rem;
+    max-width:800px; margin:0 auto 4rem;
+    flex-wrap:wrap;
+  }
+  .garantia-icon { font-size:2.5rem; flex-shrink:0; }
+  .garantia-text h3 { font-weight:700; color:var(--verde); margin-bottom:0.25rem; }
+  .garantia-text p { font-size:0.88rem; color:rgba(245,245,240,0.55); line-height:1.6; }
+
+  /* PLANES */
+  .planes-section { padding:5rem 2rem; background:var(--gris); }
+  .planes-inner { max-width:1100px; margin:0 auto; }
+  .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,7vw,5rem); line-height:1; margin-bottom:0.5rem; }
+  .section-sub { color:rgba(245,245,240,0.45); margin-bottom:3rem; font-size:0.92rem; }
+  .planes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.5rem; align-items:start; }
+
+  .plan {
+    background:var(--negro); border-radius:24px; padding:2.5rem 2rem;
+    border:1px solid rgba(245,245,240,0.07);
+    transition:transform 0.3s,border-color 0.3s;
+    position:relative; overflow:hidden;
+  }
+  .plan:hover { transform:translateY(-6px); }
+  .plan.popular { border-color:var(--rojo); transform:scale(1.04); }
+  .plan.popular:hover { transform:scale(1.04) translateY(-6px); }
+  .plan.vip { border-color:rgba(245,200,66,0.3); }
+  .plan.vip:hover { border-color:var(--dorado); }
+
+  .plan-badge {
+    position:absolute; top:1.5rem; right:1.5rem;
+    padding:0.25rem 0.8rem; border-radius:100px;
+    font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+  }
+  .badge-popular { background:linear-gradient(135deg,var(--rojo),var(--naranja)); color:white; }
+  .badge-vip { background:linear-gradient(135deg,#d4a017,var(--dorado)); color:#0a0a0a; }
+
+  .plan-emoji { font-size:2.5rem; margin-bottom:1rem; }
+  .plan-name { font-family:'Bebas Neue',sans-serif; font-size:1.9rem; letter-spacing:0.05em; margin-bottom:0.2rem; }
+  .plan-desc { color:rgba(245,245,240,0.45); font-size:0.83rem; margin-bottom:1.5rem; }
+
+  .plan-price { margin-bottom:0.75rem; }
+  .amount { font-family:'Bebas Neue',sans-serif; font-size:3.8rem; line-height:1; background:linear-gradient(135deg,var(--rojo),var(--naranja)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .amount-vip { background:linear-gradient(135deg,#d4a017,var(--dorado)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .gratis-txt { font-family:'Bebas Neue',sans-serif; font-size:3.8rem; line-height:1; color:rgba(245,245,240,0.35); }
+  .periodo { font-size:0.82rem; color:rgba(245,245,240,0.38); display:block; margin-top:0.2rem; }
+
+  .valor-percibido {
+    background:rgba(255,32,32,0.07); border:1px solid rgba(255,32,32,0.15);
+    border-radius:10px; padding:0.6rem 1rem;
+    font-size:0.8rem; color:rgba(245,245,240,0.6);
+    margin-bottom:1.5rem; line-height:1.5;
+  }
+  .valor-percibido strong { color:var(--rojo); }
+
+  .plan-features { list-style:none; margin-bottom:1.75rem; display:flex; flex-direction:column; gap:0.7rem; }
+  .plan-features li { display:flex; align-items:flex-start; gap:0.7rem; font-size:0.88rem; color:rgba(245,245,240,0.72); line-height:1.4; }
+  .check { color:var(--verde); font-size:0.95rem; flex-shrink:0; margin-top:0.1rem; }
+  .check-gold { color:var(--dorado); font-size:0.95rem; flex-shrink:0; margin-top:0.1rem; }
+
+  .bonus-section { border-top:1px solid rgba(245,245,240,0.07); padding-top:1.25rem; margin-bottom:1.75rem; }
+  .bonus-title { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(245,245,240,0.35); margin-bottom:0.75rem; }
+  .bonus-item { display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; color:rgba(245,245,240,0.6); margin-bottom:0.5rem; }
+  .bonus-item .gift { color:var(--dorado); }
+
+  .btn-plan {
+    display:block; text-align:center; padding:1rem; border-radius:14px;
+    text-decoration:none; font-weight:700; font-size:0.92rem;
+    transition:transform 0.2s,box-shadow 0.2s;
+  }
+  .btn-filled { background:linear-gradient(135deg,var(--rojo),var(--naranja)); color:white; box-shadow:0 4px 22px rgba(255,32,32,0.3); }
+  .btn-filled:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(255,32,32,0.5); }
+  .btn-gold { background:linear-gradient(135deg,#d4a017,var(--dorado)); color:#0a0a0a; box-shadow:0 4px 22px rgba(245,200,66,0.25); }
+  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(245,200,66,0.45); }
+  .btn-outline { border:1px solid rgba(245,245,240,0.14); color:rgba(245,245,240,0.6); }
+  .btn-outline:hover { border-color:rgba(245,245,240,0.3); background:rgba(245,245,240,0.04); }
+
+  .urgencia-plan {
+    text-align:center; font-size:0.75rem;
+    color:var(--rojo); font-weight:600;
+    margin-top:0.75rem; animation:blink-text 2s infinite;
+  }
+  @keyframes blink-text { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  /* TESTIMONIOS */
+  .testimonios { padding:5rem 2rem; }
+  .test-inner { max-width:1100px; margin:0 auto; }
+  .test-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.5rem; margin-top:3rem; }
+  .testimonio {
+    background:var(--gris); border-radius:20px; padding:2rem;
+    border:1px solid rgba(245,245,240,0.06);
+    transition:transform 0.3s; position:relative;
+  }
+  .testimonio:hover { transform:translateY(-4px); }
+  .test-quote { font-size:2rem; color:var(--rojo); line-height:1; margin-bottom:0.75rem; }
+  .testimonio p { color:rgba(245,245,240,0.68); line-height:1.75; font-size:0.9rem; margin-bottom:1.25rem; font-style:italic; }
+  .test-autor { display:flex; align-items:center; gap:0.75rem; }
+  .avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--rojo),var(--naranja)); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.82rem; flex-shrink:0; }
+  .avatar-gold { background:linear-gradient(135deg,#d4a017,var(--dorado)); color:#0a0a0a; }
+  .test-nombre { font-weight:700; font-size:0.88rem; display:block; }
+  .test-detalle { font-size:0.78rem; color:rgba(245,245,240,0.38); }
+  .test-stars { color:var(--dorado); font-size:0.85rem; margin-bottom:0.75rem; }
+  .test-plan-badge { display:inline-block; background:rgba(255,32,32,0.1); border:1px solid rgba(255,32,32,0.2); padding:0.15rem 0.6rem; border-radius:100px; font-size:0.68rem; color:var(--rojo); font-weight:600; margin-bottom:0.75rem; }
+
+  /* FAQ */
+  .faq-section { padding:5rem 2rem; max-width:750px; margin:0 auto; }
+  .faq-item { border-bottom:1px solid rgba(245,245,240,0.07); padding:1.4rem 0; cursor:pointer; }
+  .faq-q { display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:0.92rem; gap:1rem; }
+  .faq-icon { color:var(--rojo); font-size:1.2rem; flex-shrink:0; transition:transform 0.3s; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+  .faq-a { color:rgba(245,245,240,0.52); font-size:0.88rem; line-height:1.75; margin-top:0.9rem; display:none; }
+  .faq-item.open .faq-a { display:block; }
+
+  /* CTA FINAL */
+  .cta-final { text-align:center; padding:6rem 2rem; position:relative; overflow:hidden; background:var(--gris); }
+  .cta-final::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%,rgba(255,32,32,0.09),transparent 70%); }
+  .cta-final h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,9vw,7rem); line-height:0.92; margin-bottom:1.5rem; position:relative; }
+  .cta-final p { color:rgba(245,245,240,0.52); font-size:1rem; margin-bottom:2.5rem; position:relative; max-width:420px; margin-left:auto; margin-right:auto; }
+  .cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; }
+
+  footer { text-align:center; padding:2rem; border-top:1px solid rgba(245,245,240,0.05); color:rgba(245,245,240,0.22); font-size:0.78rem; line-height:1.8; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* CONTADOR */
+  .contador { display:flex; gap:0.5rem; justify-content:center; margin-bottom:2rem; animation:fadeUp 0.8s ease 0.7s both; }
+  .contador-box { background:rgba(255,32,32,0.1); border:1px solid rgba(255,32,32,0.2); border-radius:10px; padding:0.5rem 0.8rem; text-align:center; min-width:60px; }
+  .contador-num { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--rojo); line-height:1; }
+  .contador-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(245,245,240,0.4); }
+  .contador-sep { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--rojo); align-self:center; margin-top:-0.5rem; }
+</style>
+</head>
+<body>
+
+<!-- BARRA URGENCIA -->
+<div class="urgencia-bar">
+  🔥 OFERTA ESPECIAL — Solo quedan <strong>7 cupos</strong> en el Plan Premium este mes
+</div>
+
+<nav>
+  <div class="logo">GLOBAL <span>FITNESS</span> 💪</div>
+  <a href="#planes" class="nav-cta">Ver planes →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><div class="dot"></div> Más de 199 personas ya transformando su vida</div>
+  <h1>DEJA DE<br>INTENTARLO<br><span class="grad">HAZLO</span> 🔥</h1>
+  <p class="hero-pain">
+    ¿Llevas meses diciendo <strong>"mañana empiezo"</strong>? ¿Probaste dietas que no funcionan?
+    ¿Vas al gym sin ver resultados? <strong>El problema no eres tú — es que nadie te está guiando bien.</strong>
+  </p>
+
+  <div class="hero-social-proof">
+    <div class="avatares">
+      <div>MR</div><div>CL</div><div>AP</div><div>JV</div><div>+</div>
+    </div>
+    <div>
+      <div class="estrellas-hero">★★★★★</div>
+      <div class="social-text"><strong>199+ personas</strong> ya están cambiando su cuerpo</div>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="#planes" class="btn-primary">🚀 Quiero transformarme ahora</a>
+    <a href="https://t.me/mundofitnessglobal" class="btn-secondary">Empezar gratis</a>
+  </div>
+</section>
+
+<!-- DOLOR -->
+<section class="dolor">
+  <div class="dolor-inner">
+    <h2 class="reveal">¿TE IDENTIFICAS<br>CON ESTO? 😔</h2>
+    <div class="dolor-grid">
+      <div class="dolor-item reveal">
+        <div class="x">😩</div>
+        <h3>Haces ejercicio pero no ves resultados</h3>
+        <p>Vas al gym, te esfuerzas, pero tu cuerpo no cambia. El problema es que nadie te explicó cómo hacerlo bien.</p>
+      </div>
+      <div class="dolor-item reveal">
+        <div class="x">🍕</div>
+        <h3>Comes "sano" pero igual engordas</h3>
+        <p>Seguiste dietas de internet y solo terminaste frustrada. La industria alimentaria te mintió toda la vida.</p>
+      </div>
+      <div class="dolor-item reveal">
+        <div class="x">😴</div>
+        <h3>Sin energía todo el día</h3>
+        <p>Te despiertas cansada, a las 3pm mueres de sueño. Tu cuerpo está pidiendo un cambio urgente.</p>
+      </div>
+      <div class="dolor-item reveal">
+        <div class="x">🤷</div>
+        <h3>No sabes por dónde empezar</h3>
+        <p>Hay tanta información contradictoria que no sabes qué hacer. Un día dicen una cosa, al otro lo contrario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>💪 NUTRICIÓN REAL</span><span>🔥 RUTINAS EFECTIVAS</span><span>🧬 CIENCIA FITNESS</span>
+    <span>🥗 RECETAS SALUDABLES</span><span>⚡ MOTIVACIÓN DIARIA</span><span>💤 RECUPERACIÓN</span>
+    <span>💪 NUTRICIÓN REAL</span><span>🔥 RUTINAS EFECTIVAS</span><span>🧬 CIENCIA FITNESS</span>
+    <span>🥗 RECETAS SALUDABLES</span><span>⚡ MOTIVACIÓN DIARIA</span><span>💤 RECUPERACIÓN</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="sobre-avatar reveal">
+    💪
+    <div class="sobre-avatar-name">Ximena Devia</div>
+  </div>
+  <div class="reveal">
+    <p class="tag">Quién te guía</p>
+    <h2>SOY XIMENA<br>Y YO PASÉ<br>POR LO MISMO 👋</h2>
+    <p>Durante años busqué información fitness confiable y solo encontré mitos, dietas imposibles y rutinas que no funcionaban. Decidí investigar a fondo la ciencia detrás del entrenamiento y la nutrición.</p>
+    <p>Hoy llevo más de 5 años compartiendo ese conocimiento en <strong>Global Fitness</strong>, ayudando a cientos de personas a entender cómo funciona realmente su cuerpo — sin mentiras, sin trucos.</p>
+    <p><strong>Mi método está basado en años de investigación, resultados reales y cientos de personas que ya transformaron su cuerpo siguiendo este sistema.</strong> Lo que enseño funciona — y los números lo demuestran.</p>
+    <div class="chips">
+      <span class="chip">🥗 Nutrición basada en ciencia</span>
+      <span class="chip">💪 Entrenamiento efectivo</span>
+      <span class="chip">🧬 Sin mitos</span>
+      <span class="chip">🔥 Resultados reales</span>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="planes-section" id="planes">
+  <div class="planes-inner">
+    <p class="tag reveal">Elige tu transformación</p>
+    <h2 class="section-title reveal">PLANES Y<br><span class="grad">MEMBRESÍAS</span></h2>
+    <p class="section-sub reveal">Sin contratos. Cancela cuando quieras. Garantía de 7 días.</p>
+
+    <div class="planes-grid">
+
+      <!-- GRATIS -->
+      <div class="plan reveal">
+        <div class="plan-emoji">🆓</div>
+        <div class="plan-name">Gratuito</div>
+        <div class="plan-desc">El primer paso de tu transformación</div>
+        <div class="plan-price">
+          <div class="gratis-txt">GRATIS</div>
+          <span class="periodo">Para siempre</span>
+        </div>
+        <ul class="plan-features">
+          <li><span class="check">✅</span> Canal Telegram con posts diarios</li>
+          <li><span class="check">✅</span> Datos científicos sobre fitness y nutrición</li>
+          <li><span class="check">✅</span> Tips y consejos semanales</li>
+          <li><span class="check">✅</span> Contenido motivacional</li>
+        </ul>
+        <a href="https://t.me/mundofitnessglobal" class="btn-plan btn-outline">Unirme gratis →</a>
+      </div>
+
+      <!-- COMUNIDAD -->
+      <div class="plan popular reveal">
+        <div class="plan-badge badge-popular">⭐ Más popular</div>
+        <div class="plan-emoji">⚡</div>
+        <div class="plan-name">Comunidad</div>
+        <div class="plan-desc">Para quienes van en serio</div>
+        <div class="plan-price">
+          <div class="amount">$9</div>
+          <span class="periodo">USD / mes • menos de $0.30 al día</span>
+        </div>
+        <div class="valor-percibido">
+          Valor real de todo lo incluido: <strong>$47/mes</strong> — Tú pagas solo $9
+        </div>
+        <ul class="plan-features">
+          <li><span class="check">✅</span> Todo lo del plan Gratuito</li>
+          <li><span class="check">✅</span> Grupo privado exclusivo en Telegram</li>
+          <li><span class="check">✅</span> Rutina de gym en PDF cada mes</li>
+          <li><span class="check">✅</span> Recetas exclusivas semanales</li>
+          <li><span class="check">✅</span> Retos grupales mensuales</li>
+          <li><span class="check">✅</span> Guías descargables de nutrición</li>
+        </ul>
+        <div class="bonus-section">
+          <div class="bonus-title">🎁 Bonos incluidos</div>
+          <div class="bonus-item"><span class="gift">🎁</span> Guía "Cómo perder grasa sin pasar hambre" (PDF)</div>
+          <div class="bonus-item"><span class="gift">🎁</span> Lista de compras saludable semanal</div>
+        </div>
+        <a href="https://mpago.li/1hUzGtA" class="btn-plan btn-filled">Quiero este plan 🔥</a>
+        <div class="urgencia-plan">⚡ 23 personas vieron este plan hoy</div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan vip reveal">
+        <div class="plan-badge badge-vip">👑 VIP</div>
+        <div class="plan-emoji">👑</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-desc">Transformación total con acompañamiento</div>
+        <div class="plan-price">
+          <div class="amount amount-vip">$19</div>
+          <span class="periodo">USD / mes • menos de $0.65 al día</span>
+        </div>
+        <div class="valor-percibido" style="border-color:rgba(245,200,66,0.2);background:rgba(245,200,66,0.05)">
+          Valor real de todo lo incluido: <strong style="color:var(--dorado)">$120/mes</strong> — Tú pagas solo $19
+        </div>
+        <ul class="plan-features">
+          <li><span class="check-gold">✅</span> Todo lo del plan Comunidad</li>
+          <li><span class="check-gold">✅</span> <strong>Chat directo conmigo por WhatsApp 24/7</strong></li>
+          <li><span class="check-gold">✅</span> Sesión de orientación mensual (chat o llamada)</li>
+          <li><span class="check-gold">✅</span> Plan de rutinas personalizado para ti</li>
+          <li><span class="check-gold">✅</span> Seguimiento semanal de tus metas</li>
+          <li><span class="check-gold">✅</span> Biblioteca completa de PDFs (acceso de por vida)</span></li>
+          <li><span class="check-gold">✅</span> Acceso prioritario a todo el contenido nuevo</li>
+        </ul>
+        <div class="bonus-section" style="border-color:rgba(245,200,66,0.1)">
+          <div class="bonus-title">🎁 Bonos exclusivos VIP</div>
+          <div class="bonus-item"><span class="gift">🎁</span> Plan de alimentación de 4 semanas personalizado</div>
+          <div class="bonus-item"><span class="gift">🎁</span> Guía completa de suplementación (cuáles SÍ funcionan)</div>
+          <div class="bonus-item"><span class="gift">🎁</span> Acceso a grupo VIP exclusivo en Telegram</div>
+        </div>
+        <a href="https://mpago.li/1UyERpe" class="btn-plan btn-gold">Quiero ser VIP 👑</a>
+        <div class="urgencia-plan" style="color:var(--dorado)">🔥 Solo quedan 7 cupos este mes</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAMBIOS REALES -->
+<section style="padding:5rem 2rem;background:var(--negro)" id="cambios">
+  <div style="max-width:1100px;margin:0 auto">
+    <p class="section-tag reveal">Resultados comprobados</p>
+    <h2 class="section-title reveal">CAMBIOS<br><span class="grad">REALES</span> 🏆</h2>
+    <p style="color:rgba(245,245,240,0.43);margin-bottom:3rem;font-size:0.9rem" class="reveal">Personas reales con resultados reales. Sin filtros, sin edición.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+
+      <div style="background:var(--gris);border-radius:20px;overflow:hidden;border:1px solid rgba(245,245,240,0.06);transition:transform 0.3s" class="reveal">
+        <img src="https://i.imgur.com/xwBsu78.png" alt="Cambio real María R." style="width:100%;object-fit:cover;max-height:280px;display:block">
+        <div style="padding:1.5rem">
+          <div style="font-weight:700;font-size:1rem;margin-bottom:0.25rem">Diego M. — 32 años</div>
+          <div style="font-size:0.82rem;color:rgba(245,245,240,0.5);margin-bottom:0.75rem">📉 Bajó 6 kg en 10 semanas</div>
+          <div style="font-size:0.85rem;color:rgba(245,245,240,0.68);font-style:italic;line-height:1.6;border-left:2px solid var(--rojo);padding-left:0.75rem">"Llevaba 2 años yendo al gym sin resultados. Con las rutinas y guías de nutrición, en 6 semanas ya noté cambios reales."</div>
+          <span style="display:inline-block;background:rgba(255,32,32,0.1);border:1px solid rgba(255,32,32,0.2);padding:0.2rem 0.6rem;border-radius:100px;font-size:0.68rem;color:var(--rojo);font-weight:600;margin-top:0.75rem">Plan Comunidad</span>
+        </div>
+      </div>
+
+      <div style="background:var(--gris);border-radius:20px;overflow:hidden;border:1px solid rgba(245,200,66,0.2);transition:transform 0.3s" class="reveal">
+        <img src="https://i.imgur.com/mhexWNu.png" alt="Cambio real Carlos L." style="width:100%;object-fit:cover;max-height:280px;display:block">
+        <div style="padding:1.5rem">
+          <div style="font-weight:700;font-size:1rem;margin-bottom:0.25rem">Carlos L. — 28 años</div>
+          <div style="font-size:0.82rem;color:rgba(245,245,240,0.5);margin-bottom:0.75rem">📉 Bajó 8 kg en 5 meses</div>
+          <div style="font-size:0.85rem;color:rgba(245,245,240,0.68);font-style:italic;line-height:1.6;border-left:2px solid var(--dorado);padding-left:0.75rem">"El chat con Ximena por WhatsApp es un game changer. Cuando tengo dudas me responde al tiro. Aprendí a comer bien de por vida."</div>
+          <span style="display:inline-block;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.3);padding:0.2rem 0.6rem;border-radius:100px;font-size:0.68rem;color:var(--dorado);font-weight:600;margin-top:0.75rem">Plan Premium 👑</span>
+        </div>
+      </div>
+
+      <div style="background:var(--gris);border-radius:20px;overflow:hidden;border:1px solid rgba(245,245,240,0.06);transition:transform 0.3s" class="reveal">
+        <img src="https://i.imgur.com/XSN9APY.png" alt="Cambio real Ana P." style="width:100%;object-fit:cover;max-height:280px;display:block">
+        <div style="padding:1.5rem">
+          <div style="font-weight:700;font-size:1rem;margin-bottom:0.25rem">Ana P. — 26 años</div>
+          <div style="font-size:0.82rem;color:rgba(245,245,240,0.5);margin-bottom:0.75rem">⚡ +energía y -inflamación en 3 semanas</div>
+          <div style="font-size:0.85rem;color:rgba(245,245,240,0.68);font-style:italic;line-height:1.6;border-left:2px solid var(--rojo);padding-left:0.75rem">"Las recetas son ricas y fáciles. El grupo privado es super motivador. Por fin como rico y saludable al mismo tiempo."</div>
+          <span style="display:inline-block;background:rgba(255,32,32,0.1);border:1px solid rgba(255,32,32,0.2);padding:0.2rem 0.6rem;border-radius:100px;font-size:0.68rem;color:var(--rojo);font-weight:600;margin-top:0.75rem">Plan Comunidad</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="test-inner">
+    <p class="tag reveal">Resultados reales</p>
+    <h2 class="section-title reveal">ELLOS YA<br><span class="grad">CAMBIARON</span> 🏆</h2>
+    <p style="color:rgba(245,245,240,0.6);margin-bottom:3rem;font-size:1rem;max-width:600px" class="reveal">¿Y si todavía no te convence? Mira estos resultados reales de personas que también dudaron — y hoy no pueden creer cuánto cambiaron. 🔥
+      <div class="testimonio reveal">
+        <div class="test-plan-badge">Plan Comunidad</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <p>Llevaba 2 años yendo al gym sin ver resultados. Con las rutinas del plan y las guías de nutrición, en 6 semanas ya noté cambios reales. Ojalá hubiese encontrado esto antes.</p>
+        <div class="test-autor">
+          <div class="avatar">MR</div>
+          <div>
+            <span class="test-nombre">María R.</span>
+            <span class="test-detalle">Miembro hace 3 meses • -6 kg</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio reveal">
+        <div class="test-plan-badge" style="color:var(--dorado);border-color:rgba(245,200,66,0.3);background:rgba(245,200,66,0.07)">Plan Premium 👑</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <p>El chat con Ximena por WhatsApp es un game changer. Cuando tengo dudas me responde al tiro. Bajé 8 kilos y lo mejor es que aprendí a comer bien de por vida, no solo una dieta.</p>
+        <div class="test-autor">
+          <div class="avatar avatar-gold">CL</div>
+          <div>
+            <span class="test-nombre">Carlos L.</span>
+            <span class="test-detalle">Miembro hace 5 meses • -8 kg</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio reveal">
+        <div class="test-plan-badge">Plan Comunidad</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <p>Pensé que era una más de las páginas de fitness. Pero el contenido es diferente, todo tiene base científica. Las recetas son ricas y fáciles. ¡Y el grupo privado es super motivador!</p>
+        <div class="test-autor">
+          <div class="avatar">AP</div>
+          <div>
+            <span class="test-nombre">Ana P.</span>
+            <span class="test-detalle">Miembro hace 2 meses • +energía diaria</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <p class="tag reveal">Preguntas frecuentes</p>
+  <h2 class="section-title reveal">FAQ 🙋</h2>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Cómo funciona el chat 24/7 con Ximena? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Al unirte al Plan Premium recibirás el número de WhatsApp de Ximena. Puedes escribirle cuando tengas dudas sobre nutrición, rutinas o metas. Responde en el mismo día, generalmente en pocas horas.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Cómo pago? ¿Es seguro? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Pagamos por Mercado Pago de forma 100% segura. Una vez confirmado el pago, recibirás acceso a tu plan en menos de 24 horas por Telegram o WhatsApp.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Puedo cancelar cuando quiera? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Sí, sin compromisos ni contratos. Cancelas cuando quieras y mantienes el acceso hasta el fin del período pagado.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Y si no me convence? ¿Me devuelven el dinero? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Sí. Tienes 7 días para probarlo. Si no estás satisfecha, te devolvemos el 100% sin preguntas ni problemas.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Necesito experiencia previa en gym o dietas? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Para nada. El contenido está diseñado para todos los niveles. Tanto si eres principiante absoluta como si llevas años entrenando sin ver resultados.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+    <div class="faq-q">¿Cuándo veo resultados? <span class="faq-icon">+</span></div>
+    <div class="faq-a">La mayoría de miembros notan más energía y mejor estado de ánimo en las primeras 2 semanas. Los cambios físicos visibles suelen aparecer entre las semanas 4 y 8, dependiendo de la constancia.</div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<div style="padding:3rem 2rem;max-width:900px;margin:0 auto">
+  <div class="garantia-bar reveal">
+    <div class="garantia-icon">🛡️</div>
+    <div class="garantia-text">
+      <h3>Garantía de 7 días sin preguntas</h3>
+      <p>Si en los primeros 7 días no estás satisfecha con tu plan de pago, te devolvemos el 100% de tu dinero. Sin excusas, sin burocracia. Así de segura estoy de que esto funciona.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2 class="reveal">¿HOY ES<br>TU <span class="grad">DÍA?</span> 🔥</h2>
+  <p class="reveal">Cientos de personas ya tomaron la decisión. La pregunta es: ¿cuándo la tomas tú?</p>
+  <div class="cta-btns reveal">
+    <a href="#planes" class="btn-primary">🚀 Ver planes ahora</a>
+    <a href="https://t.me/mundofitnessglobal" class="btn-secondary">Empezar gratis</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Global Fitness — Ximena Devia | @mundofitnessglobal</p>
+  <p>El contenido es orientativo y no reemplaza asesoría médica o nutricional profesional.</p>
+  <p style="margin-top:0.5rem">
+    <a href="https://t.me/mundofitnessglobal" style="color:rgba(245,245,240,0.3);text-decoration:none">Telegram</a>
+  </p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Botón flotante WhatsApp
+  const waBtn = document.getElementById('whatsapp-float');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300) {
+      waBtn.style.display = 'flex';
+    } else {
+      waBtn.style.display = 'none';
+    }
+  });
+</script>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<style>
+  #whatsapp-float {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25d366;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.82rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  #whatsapp-float:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+  }
+</style>
+
+<a href="https://wa.me/56991412397?text=Hola%20Ximena!%20Tengo%20dudas%20sobre%20los%20planes%20de%20Global%20Fitness%20%F0%9F%92%AA"
+   id="whatsapp-float"
+   target="_blank">
+  💬 ¿Dudas? Escríbeme
+</a>
+
+</body>
+</html>
