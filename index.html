@@ -656,7 +656,7 @@
   // Botón flotante WhatsApp
   const waBtn = document.getElementById('whatsapp-float');
   window.addEventListener('scroll', () => {
-    if(window.scrollY > 300) {
+    if(window.scrollY > document.body.scrollHeight * 0.6) {
       waBtn.style.display = 'flex';
     } else {
       waBtn.style.display = 'none';
