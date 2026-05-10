@@ -695,6 +695,33 @@
    target="_blank">
   💬 ¿Dudas? Escríbeme
 </a>
+<!-- NOTIFICACIONES FLOTANTES -->
+<div id="notif" style="display:none;position:fixed;bottom:5rem;left:1rem;z-index:998;background:white;color:#111;padding:0.75rem 1rem;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.15);font-size:0.8rem;max-width:220px;line-height:1.4;animation:slideIn 0.4s ease">
+  <span id="notif-text"></span>
+</div>
 
+<script>
+  const notificaciones = [
+    "🛒 Ana P. acaba de comprar el Plan Comunidad",
+    "🛒 Juan L. acaba de comprar el Plan Premium 👑",
+    "🔥 5 personas han comprado un plan hoy",
+    "🛒 María G. acaba de comprar el Plan Comunidad",
+    "👀 23 personas están viendo esta página ahora",
+    "🛒 Carlos M. acaba de comprar el Plan Premium 👑",
+    "🔥 3 personas compraron en la última hora",
+  ];
+
+  let i = 0;
+  function mostrarNotif() {
+    const notif = document.getElementById('notif');
+    const texto = document.getElementById('notif-text');
+    texto.textContent = notificaciones[i % notificaciones.length];
+    notif.style.display = 'block';
+    i++;
+    setTimeout(() => { notif.style.display = 'none'; }, 4000);
+    setTimeout(mostrarNotif, 8000);
+  }
+  setTimeout(mostrarNotif, 5000);
+</script>
 </body>
 </html>
