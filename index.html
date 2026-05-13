@@ -427,7 +427,7 @@
           <li><span class="check">✅</span> Tips y consejos semanales</li>
           <li><span class="check">✅</span> Contenido motivacional</li>
         </ul>
-        <a href="https://t.me/mundofitnessglobal" class="btn-plan btn-outline">Unirme gratis →</a>
+        <a href="#" onclick="abrirPopup();return false;" class="btn-plan btn-outline">Unirme gratis →</a>
       </div>
 
       <!-- COMUNIDAD -->
@@ -711,10 +711,10 @@
 
 <script>
   const notificaciones = [
-    "🛒 Ana P. acaba de comprar el Plan Comunidad",
-    "🛒 Juan L. acaba de comprar el Plan Premium 👑",
+    "🛒 Ana C. acaba de comprar el Plan Comunidad",
+    "🛒 Juan Gallardo acaba de comprar el Plan Premium 👑",
     "🔥 5 personas han comprado un plan hoy",
-    "🛒 María G. acaba de comprar el Plan Comunidad",
+    "🛒 María Toro. acaba de comprar el Plan Comunidad",
     "👀 23 personas están viendo esta página ahora",
     "🛒 Carlos M. acaba de comprar el Plan Premium 👑",
     "🔥 3 personas compraron en la última hora",
@@ -731,6 +731,30 @@
     setTimeout(mostrarNotif, 8000);
   }
   setTimeout(mostrarNotif, 2000);
+</script>
+<div id="popup-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;justify-content:center;align-items:center;padding:1rem">
+  <div style="background:#141414;border-radius:24px;padding:2.5rem 2rem;max-width:420px;width:100%;border:1px solid rgba(255,32,32,0.25);position:relative;text-align:center">
+    <button onclick="cerrarPopup()" style="position:absolute;top:1rem;right:1rem;background:rgba(245,245,240,0.08);border:none;color:white;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem">✕</button>
+    <div style="font-size:2.5rem;margin-bottom:1rem">🎁</div>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:0.5rem">¡ACCESO GRATIS AL CANAL! 💪</h3>
+    <p style="color:rgba(245,245,240,0.55);font-size:0.88rem;margin-bottom:1.5rem;line-height:1.6">Ingresa tu email y te enviamos el link al instante.</p>
+    <input type="text" id="popup-nombre" placeholder="Tu nombre" style="width:100%;background:rgba(245,245,240,0.06);border:1px solid rgba(245,245,240,0.12);border-radius:12px;padding:0.85rem 1rem;color:white;font-size:0.9rem;margin-bottom:0.75rem;outline:none">
+    <input type="email" id="popup-email" placeholder="Tu email" style="width:100%;background:rgba(245,245,240,0.06);border:1px solid rgba(245,245,240,0.12);border-radius:12px;padding:0.85rem 1rem;color:white;font-size:0.9rem;margin-bottom:1.25rem;outline:none">
+    <button onclick="enviarEmail()" style="width:100%;background:linear-gradient(135deg,#ff2020,#ff6b1a);color:white;border:none;border-radius:12px;padding:1rem;font-size:1rem;font-weight:700;cursor:pointer">🚀 ¡Quiero acceso gratis!</button>
+    <p style="font-size:0.72rem;color:rgba(245,245,240,0.3);margin-top:1rem">🔒 Sin spam. Cancela cuando quieras.</p>
+    <div style="margin-top:1rem;background:rgba(255,32,32,0.1);border:1px solid rgba(255,32,32,0.2);border-radius:10px;padding:0.5rem;font-size:0.78rem;color:#ff6b6b;font-weight:600">⚠️ Solo quedan <span id="plazas-num">7</span> plazas gratuitas</div>
+  </div>
+</div>
+<script>
+  function abrirPopup(){document.getElementById('popup-overlay').style.display='flex';}
+  function cerrarPopup(){document.getElementById('popup-overlay').style.display='none';}
+  function enviarEmail(){
+    const email=document.getElementById('popup-email').value;
+    if(!email||!email.includes('@')){alert('Por favor ingresa un email válido');return;}
+    cerrarPopup();
+    window.open('https://t.me/mundofitnessglobal','_blank');
+  }
+  document.getElementById('popup-overlay').addEventListener('click',function(e){if(e.target===this)cerrarPopup();});
 </script>
 </body>
 </html>
